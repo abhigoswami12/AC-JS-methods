@@ -19,12 +19,12 @@ let words = str.split(" ");
 
 Let's keep our terms clear:
 
-- Function Defination
+- Function Definition
 - Function Reference
 - Function Call
 
 ```js
-// function defination
+// function definition
 function add(a, b) {
   return a + b;
 }
@@ -59,7 +59,7 @@ A function that repeats n times.
 
 ```js
 function repeatNTimes(n){
-  for(let i = 0; i < n; i++>){
+  for(let i = 0; i < n; i++){
     console.log(i);
   }
 }
@@ -67,7 +67,7 @@ repeatNTimes(10); // console will print from 1-9
 
 // If you want to alert those values you will have change the function like this
 function repeatNTimes(n){
-  for(let i = 0; i < n; i++>){
+  for(let i = 0; i < n; i++){
     alert(i);
   }
 }

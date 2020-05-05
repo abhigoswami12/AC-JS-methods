@@ -11,35 +11,123 @@
     <script>
       function countAllPeople() {
         // your code goes here
+        let allHousePeople = got.houses.reduce((acc, house) => {
+          let oneHousePeople = house.people.map(single => single.name);
+          return acc.concat(oneHousePeople);
+        },[]);
+        return allHousePeople.length;
       }
+      countAllPeople();
+
+   
+      //method-2
+      function countAllPeople() {
+
+      let allHousePeople = got.houses.reduce((acc, house) => {
+        let allHousePeopleLength = acc + house.people.length;
+        return allHousePeopleLength;
+            },0);
+        return allHousePeople;
+      }
+
+      countAllPeople();
+
+
 
       function peopleByHouses() {
         // your code goes here
-      }
+      let allHousePeople = got.houses.reduce((acc, house) => {
+        let houseName = house.name;
+        let oneHousePeopleLength = house.people.length;
+        acc[houseName] = oneHousePeopleLength;
+        return acc;
+      }, {});
+      return allHousePeople;
+    }
+    peopleByHouses();
+
 
       function everyone() {
-        // your code goes here
+         // your code goes here
+        let allHousePeople = got.houses.reduce((acc, house) => {
+          let oneHousePeople = house.people.map(single => single.name)
+          return acc.concat(oneHousePeople)
+        },[]);
+        return allHousePeople;
+              
       }
 
       function nameWithS() {
         // your code goes here
+        let allHousePeople = got.houses.reduce((acc, house) => {
+          let oneHousePeople = house.people.map(single => single.name)
+          return acc.concat(oneHousePeople)
+        },[]);
+         var peopleNameWithS = allHousePeople.filter(select => {
+           if (select.includes('s') || select.includes('S')) {
+             return select;
+           }
+         });
+        return peopleNameWithS;
       }
 
       function nameWithA() {
         // your code goes here
+        let allHousePeople = got.houses.reduce((acc, house) => {
+          let oneHousePeople = house.people.map(single => single.name)
+          return acc.concat(oneHousePeople)
+        },[]);
+         var peopleNameWithA = allHousePeople.filter(select => {
+           if (select.includes('a') || select.includes('A')) {
+             return select;
+           }
+         });
+        return peopleNameWithA;
       }
 
       function surnameWithS() {
         // your code goes here
+        let allHousePeople = got.houses.reduce((acc, house) => {
+          let oneHousePeople = house.people.map(single => single.name)
+          return acc.concat(oneHousePeople)
+        },[]);
+         var peopleSurNameWithS = allHousePeople.filter(select => {
+          var surname = select.split(" ")[1];
+          if (surname.startsWith('S')) {
+            return select;
+          }
+         });
+        return peopleSurNameWithS;
       }
 
       function surnameWithA() {
         // your code goes here
+        let allHousePeople = got.houses.reduce((acc, house) => {
+          let oneHousePeople = house.people.map(single => single.name)
+          return acc.concat(oneHousePeople)
+        },[]);
+         var peopleSurNameWithA = allHousePeople.filter(select => {
+          var surname = select.split(" ")[1];
+          if (surname.startsWith('A')) {
+            return select;
+          }
+         });
+        return peopleSurNameWithA;
       }
 
       function peopleNameOfAllHouses() {
         // your code goes here
+        let allHousePeople = got.houses.reduce((acc, house) => {
+          let houseName = house.name;
+          let oneHousePeople = house.people.map(single => single.name);
+          // var oneHousePeopleLength =oneHousePeople.length;
+          // return acc.concat(houseName, ": ", oneHousePeople);
+          acc[houseName] = oneHousePeople;
+          return acc;
+        },{});
+        return allHousePeople;
       }
+      peopleNameOfAllHouses();
 
       // Testing your result after writing your function
       console.log(countAllPeople());
