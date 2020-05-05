@@ -12,36 +12,130 @@ let words = [
   "rhythm"
 ];
 // - Write a function findLongestWord that takes an array of words and returns the longest word from the array. (Use above array "words" to test it). If there are 2 with the same length, it should return the first occurrence.
+var longest = "";
+function findLongestWord(array) {
+for(i = 0; i < array.length; i++) {
+   if (array[i].length > longest.length) {
+    longest = array[i];
+  }
+}
+console.log(longest);
+}
+
+findLongestWord(words);
 
 // - Convert the above array "words" into an array of length of word instead of word.
+words.map(word => word.length )
 
 // - Create a new array that only contains word with atleast one vowel.
+words.filter(word => {
+  for (i = 0; i < word.length; i++) {
+    if (word[i] == 'a'|| word[i] == 'e'|| word[i] == 'i'|| word[i] == '0'|| word[i] == 'u' ) {
+      return word;
+    }
+  }
+})
+
+//solve the same question using forEach
+words.filter(word => {
+  word.forEach(w => {
+    if (word[i] == 'a'|| word[i] == 'e'|| word[i] == 'i'|| word[i] == '0'|| word[i] == 'u' ) {
+      console.log(word) ;
+    }
+  })
+  } )
 
 // - Find the index of the word "rhythm"
 
-// - Create a new array that contians words not starting with vowel.
+words.indexOf('rhythm')
 
-// - Create a new array that contianse words not ending with vowel
+// - Create a new array that contians words not starting with vowel.
+words.filter(word =>{
+  if(word[0] !== 'a' && word[0] !== 'e' && word[0] !== 'i' && word[0] !== '0' && word[0] !== 'u' ) {
+    return word;
+  }
+}
+  )
+
+// - Create a new array that contians words not ending with vowel
+words.filter(word =>{
+  if(word[word.length - 1] !== 'a' && word[word.length - 1] !== 'e' && word[word.length - 1] !== 'i' && word[word.length - 1] !== '0' && word[0] !== 'u' ) {
+    return word;
+  }
+}
+  )
 
 let numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
 // - Create a sumArray function that takes an array of number as a parameter, and calculate the sum of all its numbers
+var sum = 0;
+function sumArray(array) {
+  for (i = 0; i < array.length; i++) {
+    sum = sum + array[i]
+  }
+  return sum;
+}
+
+sumArray(numbers);
+console.log(sum)
 
 // - Make a new array that contains number multiplied by 3 like [6, 18, 27 ...]
+numbers.filter(num => {
+  if (num % 3 == 0) return num;
+})
 
 // - Create a new array that contains only even numbers
+numbers.filter(num => {
+  if (num % 2 == 0) return num;
+})
+
 
 // - Create  a new array that contains only odd numbers.
+numbers.filter(num => {
+  if (num % 2 !== 0) return num;
+})
+
 
 // - Create a new array that should have true for even number and false for odd numbers.
+numbers.map(num => {
+  if (num % 2 == 0) {
+    return true;
+  } else {
+    return false;
+  }
+})
 
 // - Sort the above number in assending order.
+numbers.sort((a, b)=> a - b)
 
 // - Does sort mutate the original array?
+Yes, sort mutates. In the above example, after sort, array 'numbers[]' modified to ascending order //[1, 1, 2, 6, 8, 10, 12, 13, 16, 18]
 
 // - Find the sum of the numbers in the array.
+numbers.reduce((acc, num)=>acc + num, 0);
+
 
 //- Write a function averageNumbers that receives an array of numbers and calculate the average of the numbers
+var sum = 0;
+function averageNumbers(array) {
+  for (i = 0; i < array.length; i++) {
+    sum = sum + array[i]
+  }
+  return (sum / array.length);
+}
+
+averageNumbers(numbers);
+
+//method-2
+
+function averageNumbers(array) {
+  let sum = array.reduce((acc, num, i, array)=>acc + num);
+  let avg = sum / array.length;
+return avg;
+}
+  averageNumbers(numbers)
+
+
 
 let strings = [
   "seat",
@@ -56,6 +150,16 @@ let strings = [
   "palace"
 ];
 // - Write a function averageWordLength that receives an array of words2 and calculate the average length of the words.
+
+function averageWordLength(array) {
+  var sum = array.map(x =>x.length).reduce((acc, num) => acc + num, 0);
+  var avg = sum / array.length
+return avg;
+}
+
+averageWordLength(strings);
+
+
 ```
 
 ## String Methods-writeCode
@@ -70,6 +174,22 @@ let strings = [
 */
 
 // your code goes here
+
+function isString(val) {
+  if (typeof(val) == "string") {
+    return true;
+  } else {
+    return false;
+  }
+}
+isString('abhishek');
+
+//m-2
+function isString(val) {
+  var value =val.endsWith("");
+  return value;
+}
+isString('abhishek');
 
 // Test
 console.log(isString("tony stark")); // true;
@@ -86,6 +206,13 @@ console.log(isString([1, 2, 4, 0])); // false;
 */
 
 // your code goes here
+function isBlank(val) {
+  if (val === "") {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 // Test
 console.log(isBlank("")); // true;
@@ -102,6 +229,23 @@ console.log(isBlank("abc")); // false;
 */
 // your code goes here
 
+function stringToArray(text) {
+  var arr = [];
+var a = "";
+  for (i = 0; i < text.length; i++) {
+    if(text[i] !== " ") {
+       a = a + text[i];
+    } else {
+    arr.push(a);
+    a = "";
+    }
+    if (i === (text.length-1)) {
+      arr.push(a);
+    }
+  }
+  return arr;
+}
+
 // Test
 console.log(stringToArray("Hello World")); // ["Robin", "Singh"];
 console.log(stringToArray("Lady Bird")); // ["Lady", "Bird"];
@@ -117,6 +261,11 @@ console.log(stringToArray("Lady Bird")); // ["Lady", "Bird"];
 */
 // your code goes here
 
+function truncate(text, end) {
+  return text.slice(0, end)
+}
+truncate("Robin Singh", 4)
+
 // Test
 console.log(truncate("Robin Singh", 4)); //"Robi";
 ```
@@ -130,6 +279,19 @@ console.log(truncate("Robin Singh", 4)); //"Robi";
   @return String
 */
 // your code goes here
+function abbrevName(string) {
+  for (i = 0; i < string.length; i++) {
+    if(string[i] == " ") {
+      return string.slice(0, i+2).concat(".");
+    }
+  }
+}
+
+//method-2
+function abbrevName(string) {
+  return string.split(" ")[0] + " " + string.split(" ")[1].slice(0, 1) + ".";
+}
+
 
 // Test
 console.log(abbrevName("Robin Singh")); //"Robin S."
@@ -144,6 +306,14 @@ console.log(abbrevName("Robin Singh")); //"Robin S."
   @return String
 */
 // your code goes here
+function protect(email) {
+  return email.split("@")[0].slice(0, 5).padEnd(8, '.' ) + '@' + email.split("@")[1]
+}
+
+//method-2
+function protect(email) {
+  return email.split("@")[0].slice(0, 5).concat("...", "@" `${email.split("@")[1]}` )
+}
 
 // Test
 console.log(protect("robin_singh@example.com")); // "robin...@example.com"
@@ -158,6 +328,10 @@ console.log(protect("robin_singh@example.com")); // "robin...@example.com"
   @return String
 */
 // your code goes here
+function parameterize(str) {
+  return str.toLowerCase().split(' ').join('-')
+
+}
 
 // Test
 console.log(parameterize("Robin Singh from USA.")); // "robin-singh-from-usa"
@@ -172,6 +346,9 @@ console.log(parameterize("Robin Singh from USA.")); // "robin-singh-from-usa"
 @return String
 */
 // your code goes here
+function capitalizeFirst(text) {
+  return text.split("")[0].toUpperCase() + text.split("").slice(1).join('')
+}
 
 // Test
 console.log(capitalizeFirst("js string exercises")); // "Js string exercises"
@@ -186,6 +363,11 @@ console.log(capitalizeFirst("js string exercises")); // "Js string exercises"
   @return String
 */
 // your code goes here
+function capitalizeWords(text) {
+  // var a = text.split(" ");
+  return text.split(" ").map(word => word.split("")[0].toUpperCase() + word.split("").slice(1).join('')).join(' ');
+}
+
 console.log(capitalizeWords("js string exercises")); // "Js String Exercises"
 ```
 
@@ -198,6 +380,20 @@ console.log(capitalizeWords("js string exercises")); // "Js String Exercises"
   @return String
 */
 // your code goes here
+
+function swapcase(text) {
+  var swappedValue = text.split('').map( (char, i) => {
+    if (char.charCodeAt() >= 65 && char.charCodeAt() <= 90) {
+     var character = char.toLowerCase();
+    } else {
+      character = char.toUpperCase();
+    }
+    return character;
+  }).join("");
+  return swappedValue;
+}
+
+
 
 // Tets
 console.log(swapcase("AaBbc")); // "aAbBC"
@@ -214,7 +410,28 @@ Example:
   @return String
 */
 // your code goes here
+function camelize(text) {
+  var arrOfWords = text.split(" ");
+  var camelizedText = arrOfWords[0].toLowerCase();
 
+  arrOfWords.forEach((word, i) => {
+    if(i !== 0) {
+      // var capitalizedWord = word.split("").map((char, i) => {
+      //   return (i == 0) ? char.toUpperCase() : char.toLowerCase();
+      // })
+      var capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      camelizedText += capitalizedWord;
+    }
+  });
+
+  return camelizedText;
+}
+
+
+// method-2(less preferred)
+function camelize(text) {
+  return text.split(" ")[0] + text.split(" ").slice(1).map(word => word.split("")[0].toUpperCase() + word.split("").slice(1).join("")).join("")
+}
 // Test
 console.log(camelize("JavaScript Exercises")); // "JavaScriptExercises"
 console.log(camelize("JavaScript exercises")); // "JavaScriptExercises"
@@ -230,7 +447,30 @@ console.log(camelize("JavaScriptExercises")); // "JavaScriptExercises"
   @return String
 */
 // your code goes here
+function uncamelize(text, joinstr) {
+  return text.split('').map((char, i) => {
+    if (char.charCodeAt() >= 65 && char.charCodeAt() <= 90) {
+      return char.tolowerCase();
+    }
+	else {
+		return char;
+    }
+  })
+}
 
+
+var final = "";
+function uncamelize(text, joinstr) {
+  for (i = 0; i < text.length; i++) {
+    if (text[i].charCodeAt() >= 65 && text[i].charCodeAt() <= 90) {
+      final += joinstr + text[i].toLowerCase();
+    }
+	else {
+		final += text[i];
+  }
+}
+return final;
+}
 // Tets
 console.log(uncamelize("helloWorld", "_")); // "hello_world"
 ```
@@ -244,6 +484,9 @@ console.log(uncamelize("helloWorld", "_")); // "hello_world"
   @return String
 */
 // your code goes here
+function repeat(text, times = 1) {
+  return text.repeat(times)
+}
 
 // Test
 console.log(repeat("Ha!", 3)); // "Ha!Ha!Ha!"
@@ -258,7 +501,17 @@ console.log(repeat("Ha!", 3)); // "Ha!Ha!Ha!"
   @return String
 */
 // your code goes here
+function insert(text1,text2, position) {
+  var a = text1.split("");
+  a.splice(position, 0, text2);
+  return a.join("");
+}
 
+//method - 2
+function insert(text1,text2, position) {
+  var result = text1.slice(0,position) + text2 + text1.slice(position);
+  return result;
+}
 // Test
 console.log(insert("We are doing some exercises.", "JavaScript ", 18)); // "We are doing some JavaScript exercises."
 ```
@@ -272,7 +525,19 @@ console.log(insert("We are doing some exercises.", "JavaScript ", 18)); // "We a
   @return String
 */
 // your code goes here
-
+function humanize(num) {
+  var a = String(num);
+  if (a[a.length-1] == '1') {
+      a = a + 'st';
+  } else if(a[a.length-1] == '2') {
+      a = a + 'nd';
+  } else if(a[a.length-1] == '3') {
+      a = a + 'rd';
+  } else {
+      a = a + 'th';
+  }
+  return a;
+}
 // Test
 console.log(humanize(301)); // "301st"
 console.log(humanize(402)); // "402nd"
@@ -289,6 +554,11 @@ Write a function to truncates a string if it is longer than the specified number
   @return String
 */
 // your code goes here
+function textTruncate(text, len, postfix) {
+  if (text.length > len) {
+    var a = text.slice(0, (len - postfix.length)) + postfix;
+  }
+}
 
 // Test
 console.log(textTruncate("We are doing JS string exercises.", 15, "!!")); //"We are doing !!"
@@ -304,6 +574,15 @@ console.log(textTruncate("We are doing JS string exercises.", 15, "!!")); //"We 
 */
 // your code goes here
 
+var final = [];
+function stringChop(text, size) {
+  for (i = 0; i < text.length; i = i + 2){
+    var char = text.substr(i, size);
+    final.push(char);
+  }
+  return final;
+}
+
 // Test
 console.log(stringChop("hello world", 2)); // ["he", "ll", "o ", "wo", "rl", "d"]
 ```
@@ -317,6 +596,33 @@ console.log(stringChop("hello world", 2)); // ["he", "ll", "o ", "wo", "rl", "d"
   @return Number
 */
 // your code goes here
+var finalCount = 0;
+function count(text, char) {
+  var splittedWord = text.split(" ");
+  splittedWord.forEach(word => {
+    if(word == char) {
+      finalCount++;
+    }
+  });
+  return finalCount;
+}
+
+//method-2 using indexOf
+
+
+
+function count(text, char) {
+  var pos = 0;
+  var finalCount = 0;
+  var findPos = text.indexOf(char);
+  
+  while (findPos !== -1){
+      var findPos = text.indexOf(char, findPos + 1);
+      finalCount++;
+      findPos = findPos + 1;
+    }
+    return finalCount;
+}
 
 // Test
 console.log(count("The quick brown fox jumps over the lazy dog", "the")); // 2
@@ -331,6 +637,11 @@ console.log(count("The quick brown fox jumps over the lazy dog", "the")); // 2
   @return String
 */
 
+function strip(text) {
+  return text.trim();
+
+}
+
 // Test
 console.log(strip("   Hello World ")); // "Hello World"
 ```
@@ -344,6 +655,9 @@ console.log(strip("   Hello World ")); // "Hello World"
   @return String
 */
 
+function chopWords(text, words) {
+  return text.split(" ").slice(0, words).join(' ')
+}
 // Test
 console.log(chopWords("The quick brown fox jumps over the lazy dog", 4)); // "The quick brown fox"
 ```
@@ -356,6 +670,9 @@ console.log(chopWords("The quick brown fox jumps over the lazy dog", 4)); // "Th
   @parameter (string, number) text, times
   @return String
 */
+function alphabetize(text) {
+  return text.split("").sort().join("");
+}
 
 // Test
 console.log(alphabetize("United States")); // 'SUadeeinsttt'
